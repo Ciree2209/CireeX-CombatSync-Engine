@@ -1,141 +1,64 @@
-# ⚔️ CireeX Combat Sync v1.0 (Enterprise)
+# CireeX Combat Sync
 
-[![Version](https://img.shields.io/badge/Version-1.0.0--Stable-blue.svg?style=for-the-badge)](https://github.com/Ciree2209/CireeX-CombatSync-Engine)
-[![Format](https://img.shields.io/badge/Format-Spigot/Paper-yellow.svg?style=for-the-badge)](https://papermc.io)
-[![API](https://img.shields.io/badge/API-1.8.8--R0.1-green.svg?style=for-the-badge)](https://helpch.at/docs/1.8.8/)
-[![Anticheat](https://img.shields.io/badge/Anticheat-Ready-red.svg?style=for-the-badge)](https://github.com/Ciree2209/CireeX-CombatSync-Engine)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+A high-performance combat engine for Minecraft 1.8.8, designed to provide consistent knockback mechanics and precise hit detection.
 
-**CireeX Combat Sync** is a premium, tournament-grade combat synchronization engine engineered for high-concurrency 1.8.8 PvP networks. Built to match and exceed the mechanical "feel" of top-tier networks,it utilizes a sophisticated velocity pipeline and historical reconciliation to eliminate the "latency gap" in competitive play.
+## Features
 
----
+### Knockback Engine
+- **Profile System**: Define multiple knockback profiles with custom horizontal, vertical, and friction values.
+- **Arena Overrides**: Apply specific knockback profiles to different game arenas or world regions.
+- **Dynamic Physics**: Friction and velocity application layers designed to match standard 1.8.8 mechanics.
 
-## 💎 Why CireeX Combat Sync?
+### Hit Detection & Lag Compensation
+- **Hybrid Validation**: Uses AABB bounding box checks combined with raytracing for accurate hit registration.
+- **Position Snapshots**: Tracks historical entity positions to compensate for network latency.
+- **Confidence Scoring**: Analyzes reach and angles to adjust knockback based on hit reliability.
 
-In high-stakes PvP (Practice, Ranked BedWars), the difference between a combo and a loss is often measured in milliseconds. Standard Minecraft combat calculation is reactive and often inconsistent under varying network conditions. 
+### Combat Mechanics
+- **Sprint Reset Detection**: Real-time detection of W-taps and S-taps for mechanical consistency.
+- **Combo Tracking**: Tracks consecutive hits for use in custom mechanics or telemetry.
+- **Velocity Smoothing**: Minimizes rubber-banding during high-velocity events.
 
-- **Tournament-Grade Feel**: Precise reproduction of the beloved 1.8.8 "Smooth" knockback, eliminating jumpy or erratic velocity pulses.
-- **Latency-Equalization**: Advanced lag compensation ensures that a player with 10ms ping and a player with 150ms ping experience fair, consistent hit registration and knockback.
-- **Anticheat-Invisible Architecture**: Designed from the ground up to never cancel events or teleport players, ensuring 100% compatibility with Verus, Vulcan, Grim, and other top-tier anticheats.
+### Tournament Mode
+- **Deterministic Play**: Disables all movement randomization for pure skill-based matches.
+- **KB Logging**: Logs every knockback calculation with SHA-256 hashes for post-match verification.
+- **Match Summaries**: Automatically exports match data (hits, duration, winner) to external reports.
 
----
+### Diagnostics & Telemetry
+- **Combat Telemetry**: Tracks hit registration success rates, average combos, and ping-based performance.
+- **Debug Utility**: Use `/kbdebug` to visualize velocity vectors and hit detection angles in real-time.
+- **Conflict Detector**: Automatically identifies other plugins that might interfere with combat mechanics.
 
-## 🔥 The Precision Engine Breakdown
+## Commands
 
-The CireeX engine orchestrates a total of **15+ independent combat services** to deliver a flawless pvp experience.
-
-### 🎯 Hybrid Hit Detection
-*Eliminating "Ghost-Hits" and reach inconsistencies.*
-- **AABB + Raytrace Reconciliation**: Cross-references bounding box intersections with pixel-perfect raycasts to ensure every click counts.
-- **Historical Reconstruction**: Back-clocks entity positions to the exact millisecond an attacker clicked, accounting for network delay.
-- **Confidence Scoring**: Analyzes hit angles and distance to prevent "Impossible Hits" while maintaining aggressive reach leniency.
-
-### 📐 The Velocity Pipeline (11-Step Calculation)
-*How we calculate the perfect knockback, every time.*
-1. **Grounded State Resolution**: Detects if the victim is on ground, slab, or stairs.
-2. **Vanilla Reference Fetch**: Reads the base protocol velocity for the hit.
-3. **Friction Application**: Applies profile-specific horizontal/vertical friction.
-4. **Sprint Reset Detection**: Real-time detection of W/S/Z-taps with legitimate velocity boosts.
-5. **Enchantment Escalation**: Calculates Knockback I/II and Sharpness modifiers.
-6. **Profile Multipliers**: Applies the custom presets (e.g. Practice vs. BedWars).
-7. **Combo Protection**: Dynamic scale reduction for victims in infinite "zero-kb" loops.
-8. **Edge/Void Normalization**: Smooths knockback vector when near the void (Perfect for BedWars).
-9. **Latency Modification**: Adjusts friction based on the victim's current jitter/ping.
-10. **Micro-Randomization**: Adds <±1% Gaussian jitter to prevent anticheat pattern matching.
-11. **Clamp & Integrity Layer**: Final safety check to ensure values never exceed anticheat limits.
-
-### 🛡️ Enterprise Stability Systems
-*Ensuring your server stays up while the combat stays smooth.*
-- **Plugin Conflict Detector**: Automatically scans and disables conflicting combat systems in other plugins.
-- **Combat Telemetry**: Real-time tracking of hit-registration efficiency and velocity application accuracy.
-- **Tournament Mode**: A high-priority execution state for arenas that prioritizes combat packets above all other server tasks.
-- **Velocity Smoother**: Prevents "rubber-banding" during high knockback events (e.g. TNT Jumping).
-
----
-
-## 📊 Performance & Presets
-
-The engine comes with **7 Production-Ready Profiles** optimized for different game modes:
-
-| Profile | Focus | Feel Description |
+| Command | Description | Permission |
 | :--- | :--- | :--- |
-| **Vanilla+** | Generic | The base Minecraft feel, but without the "lag-spikes." |
-| **Practice (MMC)** | Duels | Low vertical, tight horizontal. Perfect for combos. |
-| **Ranked BedWars** | Strategic | Enhanced edge-protection to allow for void clutches. |
-| **BedWars Clutch** | Survival | High vertical air-time to allow for block-placement. |
-| **Duels Consistent** | Comp | Zero randomization for pure mechanical skill testing. |
-| **High KB** | Fun | Exaggerated velocity for unique game modes (e.g. Knockback-FFA). |
-| **Low KB** | Tank | Reduced knockback for Factions/Gapple-style combat. |
+| `/kb reload` | Reloads all configuration files and profiles. | `combatsync.reload` |
+| `/kb list` | Lists all loaded knockback profiles. | `combatsync.admin` |
+| `/kb info [player]` | Shows current profile and combat state for a player. | `combatsync.admin` |
+| `/kb setarena <id> <profile>` | Assigns a profile to a specific arena. | `combatsync.admin` |
+| `/kb test [player]` | Manually applies the current KB profile for testing. | `combatsync.debug` |
+| `/kb stats` | Displays real-time combat telemetry and statistics. | `combatsync.admin` |
+| `/kb tournament <start|stop>` | Manages deterministic tournament mode. | `combatsync.admin` |
+| `/kbdebug` | Toggles visual debug mapping for hit detection. | `combatsync.debug` |
 
----
+## API Integration
 
-## 🛠️ Commands & Control
-
-The CLI provides total control over the server's mechanical identity.
-
-| Category | Primary Commands |
-| :--- | :--- |
-| **Management** | `/kb reload`, `/kb list`, `/kb info` |
-| **Player Tuning** | `/kb profile <player> <profile>` |
-| **Diagnostics** | `/kb test`, `/kbdebug` |
-
-### Key Command Highlights:
-- `/kb reload`: Zero-downtime hot-reload of all `profiles.yml` and `config.yml` values.
-- `/kbdebug`: Real-time visualization of velocity vectors and hit detection angles.
-- `/kb profile`: Dynamically switch a player's combat engine (Great for VIP/Donator perks).
-
----
-
-## 🔌 Developer API
-
-CireeX Combat Sync offers a comprehensive API for deeper integration into your game-mode logic.
+Developers can hook into the engine using the `CombatAPI` registered via the Bukkit Services Manager.
 
 ```java
-// Access the CombatAPI via Bukkit Services
 CombatAPI api = Bukkit.getServicesManager().getRegistration(CombatAPI.class).getProvider();
 
-// Hook into the Physics Pipeline
-@EventHandler
-public void onKnockback(KnockbackApplyEvent event) {
-    // Modify velocity before it's sent to the netty queue
-    if (isInSpecialRegion(event.getPlayer())) {
-        event.multiplyHorizontal(1.2);
-    }
-}
+// Example: Get a player's current combo
+int combo = api.getCombo(player);
 
-// Track Combo States
-int currentCombo = api.getCombo(player);
+// Example: Get current KB profile
+KBProfile profile = api.getProfile(player);
 ```
 
----
-
-## 🔒 Anticheat Compliance (Zero False Flags)
-
-The engine is engineered for **100% compliance** with Verus, GrimAC, Vulcan, and Spartan.
-
-- **Hard Clamps**: Max Y velocity is hard-clamped at **0.42** (the Minecraft standard).
-- **Zero Cancellation**: We never cancel a velocity event; we only modify the payload, ensuring the anticheat's "expected position" remains in sync.
-- **Protocol Fidelity**: All velocity is applied via standard packets (No `teleport()` or `packet-injection` hacks).
-- **Gaussian Jitter**: Randomization follows a natural bell curve, preventing manual pattern detection or heuristic flags.
+## Requirements
+- **Server Version**: Bukkit/Spigot/Paper 1.8.8
+- **Java**: 8 or higher
 
 ---
-
-## 📦 Getting Started
-
-1. **Deploy**: Drop `CireeXCombatSync.jar` into your `/plugins` folder.
-2. **Setup**: The engine will auto-detect your protocol and apply the "Vanilla+" preset.
-3. **Configure**: Tune your `profiles.yml` to match your network's specific playstyle.
-
----
-
-## 💻 Technical Architecture
-
-Built on a **High-Performance Combat Pipeline**, CireeX Combat Sync separates data calculation from application, ensuring that network lag or thread congestion cannot cause "skipped hits."
-
-> [!IMPORTANT]
-> This engine is optimized specifically for **1.8.8**. It utilizes NMS access and Protocol-level optimizations that are not compatible with generic 1.12+ Spigot versions.
-
----
-
-Developed with ❤️ for the PvP Community.
-*Part of the CireeX High-Performance Suite.*
+Developed for the competitive PvP community.
