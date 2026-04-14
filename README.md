@@ -1,9 +1,9 @@
 # ⚔️ CireeX Combat Sync v1.0 (Enterprise)
 
-[![Version](https://img.shields.io/badge/Version-1.0.0--Stable-blue.svg?style=for-the-badge)](https://github.com/CireeX/CombatSync)
+[![Version](https://img.shields.io/badge/Version-1.0.0--Stable-blue.svg?style=for-the-badge)](https://github.com/Ciree2209/CireeX-CombatSync-Engine)
 [![Format](https://img.shields.io/badge/Format-Spigot/Paper-yellow.svg?style=for-the-badge)](https://papermc.io)
 [![API](https://img.shields.io/badge/API-1.8.8--R0.1-green.svg?style=for-the-badge)](https://helpch.at/docs/1.8.8/)
-[![Anticheat](https://img.shields.io/badge/Anticheat-Ready-red.svg?style=for-the-badge)](https://github.com/CireeX/CombatSync)
+[![Anticheat](https://img.shields.io/badge/Anticheat-Ready-red.svg?style=for-the-badge)](https://github.com/Ciree2209/CireeX-CombatSync-Engine)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
 **CireeX Combat Sync** is a premium, tournament-grade combat synchronization engine engineered for high-concurrency 1.8.8 PvP networks. Built to match and exceed the mechanical "feel" of top-tier networks,it utilizes a sophisticated velocity pipeline and historical reconciliation to eliminate the "latency gap" in competitive play.
