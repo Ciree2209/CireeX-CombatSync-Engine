@@ -1,0 +1,84 @@
+# ============================================
+# CireeXCombatSync - Configuration
+# Advanced Knockback & Combat Engine
+# ============================================
+
+# Base vanilla reference values (DO NOT MODIFY unless you know what you're doing)
+vanilla:
+  horizontal: 0.4
+  vertical: 0.4
+  friction: 2.0
+  airFriction: 0.91
+
+# Global velocity clamps (ANTICHEAT CRITICAL)
+clamps:
+  maxVertical: 0.42
+  minHorizontal: 0.28
+  maxHorizontal: 0.43
+
+# Hit detection configuration
+hitDetection:
+  rayLength: 3.01
+  rayStep: 0.1
+  angleTolerance: 2.6
+  eyeHeight: 1.62
+  hitDelayTicks: 1.6
+  aabbExpand: 0.08
+
+# Block hit handling
+blockHit:
+  enabled: true
+  verticalReduction: 0.015
+  horizontalReduction: 0.01
+
+# Sprint reset (W / S / Z tap)
+sprintReset:
+  enabled: true
+  maxTickWindow: 2
+  multiplier: 1.04
+
+# Combo lock prevention (CRITICAL)
+comboLockPrevention:
+  enabled: true
+  hitThreshold: 3
+  tickWindow: 10
+  horizontalBoost: 0.03
+  verticalBoost: 0.02
+
+# Micro-randomization (anti-pattern detection)
+randomization:
+  enabled: true
+  horizontalMin: 0.996
+  horizontalMax: 1.004
+  verticalMin: 0.997
+  verticalMax: 1.003
+  useGaussian: true
+
+# Velocity integrity layer (prevents double-apply bugs)
+velocityIntegrity:
+  enabled: true
+  debugWarnings: false
+
+# Environment modifiers
+environment:
+  water:
+    horizontalMultiplier: 0.6
+    verticalMultiplier: 0.5
+  lava:
+    horizontalMultiplier: 0.5
+    verticalMultiplier: 0.4
+  web:
+    horizontalMultiplier: 0.3
+    verticalMultiplier: 0.25
+  jumping:
+    verticalLeniency: 0.03
+  falling:
+    reachReduction: 0.01
+  slabStairs:
+    angleToleranceReduction: 0.3
+
+# Default profile to use when no specific profile is assigned
+defaultProfile: "vanilla"
+
+# Debug mode (enables verbose logging)
+debug: false

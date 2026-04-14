@@ -1,0 +1,31 @@
+name: CireeXCombatSync
+version: ${project.version}
+main: com.cireex.combatsync.CireeXCombatSync
+author: CireeX
+description: Advanced Knockback and Combat Synchronization Engine
+api-version: 1.8
+
+commands:
+  kb:
+    description: Knockback configuration command
+    usage: /kb <reload|profile|info|test>
+    permission: combatsync.admin
+    aliases: [knockback, combatsync]
+  kbdebug:
+    description: Admin-only KB debug overlay
+    usage: /kbdebug
+    permission: combatsync.admin
+
+permissions:
+  combatsync.admin:
+    description: Full access to CombatSync commands
+    default: op
+  combatsync.profile:
+    description: Permission to change player profiles
+    default: op
+  combatsync.reload:
+    description: Permission to reload configuration
+    default: op
+  combatsync.debug:
+    description: Permission to use debug/test commands
+    default: op

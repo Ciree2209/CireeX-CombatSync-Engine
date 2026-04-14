@@ -1,0 +1,68 @@
+# ============================================
+# CireeXCombatSync - Arena Overrides
+# Per-arena knockback micro-tuning
+# ============================================
+
+# Arena overrides multiply or override base profile values
+# Set enabled: false to disable an arena override
+
+arenas:
+
+  # Example: BedWars Bridge Arena
+  # Safe edge handling for bridge fights
+  bw_bridge_example:
+    enabled: false                    # Set to true to enable
+    horizontalMultiplier: 0.97        # Reduce horizontal KB slightly
+    verticalMultiplier: 1.0           # Keep vertical normal
+    frictionMultiplier: 1.0           # Keep friction normal
+    edgeLogic: true                   # Enable edge KB normalization
+    voidLogic: true                   # Enable void proximity handling
+    comboProtection: true             # Keep combo protection
+    randomization: true               # Keep randomization
+    # forceProfile: "ranked_bedwars"  # Uncomment to force specific profile
+
+  # Example: Sumo Platform
+  # No edge/void protection for sumo
+  sumo_example:
+    enabled: false
+    horizontalMultiplier: 1.0
+    verticalMultiplier: 1.0
+    edgeLogic: false                  # Disable - sumo is about edges
+    voidLogic: false                  # Disable - sumo is about void
+    comboProtection: false            # Disable for pure skill
+    randomization: true
+
+  # Example: Boxing Arena
+  # Lower vertical for boxing skill
+  boxing_example:
+    enabled: false
+    horizontalMultiplier: 1.0
+    verticalMultiplier: 0.95
+    verticalCap: 0.39                 # Cap vertical at 0.39
+    edgeLogic: false
+    voidLogic: false
+    comboProtection: true
+    randomization: false              # Deterministic for ranked
+
+  # Example: Nodebuff Arena
+  # High KB for nodebuff fights
+  nodebuff_example:
+    enabled: false
+    horizontalMultiplier: 1.05
+    verticalMultiplier: 1.02
+    edgeLogic: false
+    voidLogic: false
+    comboProtection: false
+    forceProfile: "high_kb"
+
+  # Example: Ranked BedWars with specific tuning
+  ranked_bw_final:
+    enabled: false
+    horizontalMultiplier: 0.98
+    verticalMultiplier: 1.0
+    frictionMultiplier: 1.02
+    edgeLogic: true
+    voidLogic: true
+    comboProtection: true
+    randomization: true
+    forceProfile: "ranked_bedwars_clutch"

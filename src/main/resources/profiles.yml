@@ -1,0 +1,133 @@
+# ============================================
+# CireeXCombatSync - Knockback Profiles
+# Premium Profile System for Practice & Ranked
+# ============================================
+
+profiles:
+
+  # ----------------------------------------
+  # VANILLA - Base reference profile
+  # ----------------------------------------
+  vanilla:
+    horizontal: 0.4
+    vertical: 0.4
+    friction: 2.0
+    airFriction: 0.91
+    elasticity: 1.00
+    comboDecayMultiplier: 1.00
+    randomness: false
+    comboProtection: false
+    description: "Default vanilla Minecraft knockback"
+
+  # ----------------------------------------
+  # PRACTICE / COMBO (MMC-Style)
+  # For: Practice servers, combo-based fights
+  # ----------------------------------------
+  practice_combo:
+    horizontal: 0.345
+    vertical: 0.375
+    friction: 2.15
+    airFriction: 0.91
+    extraVerticalLimit: 0.42
+    sprintMultiplier: 1.0
+    elasticity: 0.92
+    comboDecayMultiplier: 1.00
+    randomness: true
+    comboProtection: true
+    description: "MMC-style practice knockback - smooth combos"
+
+  # ----------------------------------------
+  # RANKED BEDWARS (Lunar-Style)
+  # For: Competitive BedWars, ranked queues
+  # ----------------------------------------
+  ranked_bedwars:
+    horizontal: 0.382
+    vertical: 0.395
+    friction: 2.05
+    airFriction: 0.91
+    bedwarsReduction: 0.92
+    elasticity: 0.89
+    comboDecayMultiplier: 1.08
+    randomness: true
+    comboProtection: true
+    description: "Lunar-style ranked BedWars knockback"
+
+  # ----------------------------------------
+  # RANKED BEDWARS CLUTCH
+  # For: Bridge fights, block clutches, edge play
+  # ----------------------------------------
+  ranked_bedwars_clutch:
+    horizontal: 0.368
+    vertical: 0.382
+    friction: 2.1
+    airFriction: 0.91
+    edgeBoost: true
+    elasticity: 0.86
+    comboDecayMultiplier: 1.12
+    edgeDampening: true
+    randomness: true
+    comboProtection: true
+    description: "Safe edge behavior for clutch plays"
+
+  # ----------------------------------------
+  # DUELS CONSISTENT
+  # For: Tournaments, competitive integrity, VOD review
+  # ----------------------------------------
+  duels_consistent:
+    horizontal: 0.355
+    vertical: 0.38
+    friction: 2.12
+    airFriction: 0.91
+    elasticity: 0.95
+    comboDecayMultiplier: 0.85
+    randomness: false
+    deterministic: true     # Disables all RNG for tournament integrity
+    comboProtection: true
+    description: "Deterministic KB for tournaments - replay friendly"
+
+  # ----------------------------------------
+  # HIGH KB (God / Nodebuff)
+  # For: Nodebuff, god apple fights
+  # ----------------------------------------
+  high_kb:
+    horizontal: 0.41
+    vertical: 0.405
+    friction: 1.95
+    airFriction: 0.91
+    elasticity: 0.97
+    comboDecayMultiplier: 0.75
+    smoothingThreshold: 0.20   # Higher threshold for explosive hits
+    randomness: true
+    comboProtection: false
+    description: "High knockback for nodebuff/god fights"
+
+  # ----------------------------------------
+  # LOW KB (Aim / No-Combo Lock)
+  # For: Aim practice, anti-combo-lock
+  # ----------------------------------------
+  low_kb:
+    horizontal: 0.32
+    vertical: 0.36
+    friction: 2.3
+    airFriction: 0.91
+    elasticity: 0.88
+    comboDecayMultiplier: 1.15
+    randomness: true
+    comboProtection: true
+    description: "Low knockback for aim training - prevents combo lock"
+
+# ----------------------------------------
+# ARENA ASSIGNMENTS
+# Map arena IDs to profiles
+# ----------------------------------------
+arenas:
+  # Example: arena_practice: practice_combo
+  # Example: arena_ranked: ranked_bedwars
+
+# ----------------------------------------
+# QUEUE ASSIGNMENTS
+# Map queue types to profiles
+# ----------------------------------------
+queues:
+  # Example: nodebuff: high_kb
+  # Example: builduhc: practice_combo
